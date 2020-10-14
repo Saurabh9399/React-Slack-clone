@@ -4,7 +4,7 @@ import {Sidebar,MainContainer} from './';
 export default class Slack extends Component {
     render() {
         return (
-            <div className="">
+            <div id="slack">
                 <Sidebar/>
                 <MainContainer/>
             </div>
