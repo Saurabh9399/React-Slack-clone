@@ -13,19 +13,24 @@ export default class UserProvider extends Component {
 
       if (userAuth) {
         const userRef = await createOrGetUserProfileDocument(userAuth);
-             
+
         userRef.onSnapshot((snapshot) => {
           this.setState({
             user: { uid: snapshot.id, ...snapshot.data() },
+            loading: false,
           });
         });
       }
+      this.setState({ user: userAuth, loading: false });
     });
   }
 
   render() {
+    console.log(this.state.user);
+    const { user, loading } = this.state;
+
     return (
-      <UserContext.Provider value={this.state}>
+      <UserContext.Provider value={{user,loading}}>
         {this.props.children}
       </UserContext.Provider>
     );
